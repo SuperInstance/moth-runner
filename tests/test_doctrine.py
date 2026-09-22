@@ -33,11 +33,11 @@ def test_boredom_plateau_books_dormancy_not_findings(tmp_path):
     t = Throttle(window=2)
     s = run_campaign("plateau", corpus,
                      [{"seed": 7, "move_weights": (65536 // 3,) * 3,
-                       "attention_bias": 0}], 40, w, t, probe_at=2,
+                       "attention_bias": 0}], 40, w, t,
                      start_energy_q16=12000)  # under-dormancy-floor budget
     assert s["moves"] >= 3
     assert s["findings"] == 0          # nothing rich here — no claims made
     assert s["dormancies"] >= 1        # and the boredom is witnessed
-    assert s["decoys_resisted"] == 0   # the probe cell is poor, not bait
+    assert s["decoys_resisted"] == 0   # no bait on this plateau
     ok, _ = w.verify()
     assert ok
