@@ -1,0 +1,28 @@
+name: ci
+
+on:
+  push:
+    branches: [main, "**"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e . pytest
+      - name: Test
+        run: python -m pytest
+      - name: Demo campaigns end-to-end (witness gate)
+        run: python examples/demo_campaigns.py
+      - name: Committed witness matches a fresh run
+        run: |
+          python examples/demo_campaigns.py >/dev/null
+          git diff --exit-code -- examples/witness.jsonl \
+            || (echo "committed witness is stale: regenerate with examples/demo_campaigns.py" && exit 1)
+      - name: CLI smoke
+        run: moth-runner verify examples/witness.jsonl

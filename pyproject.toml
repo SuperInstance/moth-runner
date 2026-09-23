@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "moth-runner"
+version = "0.1.0"
+description = "P0 #4: the adversarial runner — campaigns, witness.jsonl, homeostatic-throttle admission"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+  # family dependency: the kernel it runs. Pinned to the kernel PR branch
+  # until Casey merges moth-cells#1; repin to @main after merge.
+  "moth-cells @ git+https://github.com/SuperInstance/moth-cells@moth-cells-k1",
+]
+
+[project.scripts]
+moth-runner = "moth_runner.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

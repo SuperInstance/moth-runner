@@ -1,0 +1,6 @@
+{"file_path":"parse.c","language":"c","loc":10,"surface":{"entry_points":16384,"name":"tokenize","taint_marks":16384}}
+{"file_path":"parse.c","language":"c","loc":10,"surface":{"entry_points":32768,"name":"parse","taint_marks":49152}}
+{"file_path":"run.c","language":"c","loc":10,"surface":{"entry_points":32768,"name":"dispatch","taint_marks":32768}}
+{"file_path":"run.c","language":"c","loc":10,"surface":{"entry_points":16384,"name":"sink","taint_marks":65536}}
+{"file_path":"net.c","language":"c","loc":10,"surface":{"entry_points":32768,"name":"route","taint_marks":49152}}
+{"file_path":"net.c","language":"c","loc":10,"surface":{"decoy":true,"entry_points":49152,"name":"decoy_route","sink_verified_safe":true,"taint_marks":65536}}
